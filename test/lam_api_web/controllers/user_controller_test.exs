@@ -33,7 +33,7 @@ defmodule LamApiWeb.UserControllerTest do
       assert json_response(conn, 200)["data"] == %{
         "id" => id,
         " is_active" => true,
-        "email" => "some email"
+        "email" => "some email"}
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -53,7 +53,7 @@ defmodule LamApiWeb.UserControllerTest do
       assert json_response(conn, 200)["data"] == %{
         "id" => id,
         " is_active" => false,
-        "email" => "some updated email"
+        "email" => "some updated email"}
     end
 
     test "renders errors when data is invalid", %{conn: conn, user: user} do
