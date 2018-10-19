@@ -7,5 +7,6 @@ defmodule LamApiWeb.Router do
 
   scope "/api", LamApiWeb do
     pipe_through :api
+    resources "/users", UserController, except: [:new, :edit]
   end
 end
