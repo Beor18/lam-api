@@ -39,4 +39,18 @@ defmodule LamApiWeb.UserController do
       send_resp(conn, :no_content, "")
     end
   end
+
+   def sign_in(conn, %{"email" => email, "password" => password}) do
+    case LamApi.Auth.authenticate_user(email, password) do
+      {:ok, user} ->
+        conn
+        |> put_status(:ok)
+        |> render(LamApiWeb.UserView, "sign_in.json", user: user)
+
+      {:error, message} ->
+        conn
+        |> put_status(:unauthorized)
+        |> render(LamApiWeb.ErrorView, "401.json", message: message)
+    end
+  end
 end
