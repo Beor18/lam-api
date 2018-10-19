@@ -14,4 +14,8 @@ defmodule LamApiWeb.ErrorView do
   def template_not_found(_template, assigns) do
     render "500.json", assigns
   end
+
+   def render("401.json", %{message: message}) do
+    %{errors: %{detail: message}}
+  end
 end
