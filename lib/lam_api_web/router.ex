@@ -21,6 +21,11 @@ defmodule LamApiWeb.Router do
     post("/users/sign_in", UserController, :sign_in)
   end
 
+  scope "/api", LamApiWeb do
+    pipe_through :api
+    resources "/productos", ProductoController, except: [:new, :edit]
+  end
+
   defp ensure_authenticated(conn, _opts) do
     current_user_id = get_session(conn, :current_user_id)
 
